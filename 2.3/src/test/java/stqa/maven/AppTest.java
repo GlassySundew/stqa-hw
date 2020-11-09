@@ -29,7 +29,7 @@ public class AppTest {
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
         driver.findElement(By.name("login")).click();
-        wait.until(ExpectedConditions.titleIs("webdriver - Поиск в Google"));
+        wait.until(ExpectedConditions.titleIs("My Store"));
     }
 
     @After
