@@ -11,8 +11,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Properties;
-
 
 public class AppTest {
 
@@ -27,8 +25,10 @@ public class AppTest {
 
     @Test
     public void mainTest() {
-        driver.get("https://www.google.com/");
-        driver.findElement(By.name("q")).sendKeys("webdriver\n");
+        driver.get("http://localhost/litecart/admin");
+        driver.findElement(By.name("username")).sendKeys("admin");
+        driver.findElement(By.name("password")).sendKeys("admin");
+        driver.findElement(By.name("login")).click();
         wait.until(ExpectedConditions.titleIs("webdriver - Поиск в Google"));
     }
 
@@ -37,5 +37,4 @@ public class AppTest {
         driver.quit();
         driver = null;
     }
-
 }
