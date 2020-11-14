@@ -26,11 +26,10 @@ public class AppTest {
     public void start() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 4);
-//        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
     }
 
     @Test
-    public void mainTest() throws InterruptedException {
+    public void mainTest() {
         driver.get("http://localhost/litecart/admin");
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
@@ -44,12 +43,12 @@ public class AppTest {
 
         // Поиск и кликание по пунктам  меню
         for (int i = 0; i < driver.findElements(By.cssSelector("li[id=app-]")).size(); i++) {
-            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("li[id=app-]:nth-of-type(" + (i + 1) + ")"))).click();;
+            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("li[id=app-]:nth-of-type(" + (i + 1) + ")"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1")));
             // Поиск и кликание по вложенным пунктам
             for (int j = 0; j < driver.findElements(By.xpath("//li[starts-with(@id,'doc')]")).size(); j++) {
-                driver.findElement(By.xpath("//li[starts-with(@id,'doc')][" + (j + 1) + "]")).click();
-                driver.findElement(By.xpath("//h1"));
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[starts-with(@id,'doc')][" + (j + 1) + "]"))).click();
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1")));
             }
         }
     }
