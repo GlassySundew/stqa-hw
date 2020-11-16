@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,10 +33,8 @@ public class AppTest {
     @Test
     public void mainTest() {
         driver.get("http://localhost/litecart");
-        int productsAmount = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[class^=product]"))).size();
-        int stickersAmount = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[class^=product] div.sticker"))).size();
-
-        assertEquals(productsAmount, stickersAmount);
+        for (WebElement productAmount : wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[class^=product]"))))
+            assertEquals(1, productAmount.findElements(By.cssSelector("li[class^=product] div.sticker")).size());
     }
 
     @After
