@@ -34,7 +34,7 @@ public class AppTest {
     public void mainTest() {
         driver.get("http://localhost/litecart");
         for (WebElement productAmount : wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("li[class^=product]"))))
-            assertEquals(1, productAmount.findElements(By.cssSelector("li[class^=product] div.sticker")).size());
+            assertEquals(1, productAmount.findElements(By.cssSelector("div.sticker")).size());
     }
 
     @After

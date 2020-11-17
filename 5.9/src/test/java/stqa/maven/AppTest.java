@@ -66,7 +66,7 @@ public class AppTest {
                 }));
             }
         }
-        
+
         // Вторая часть задания
         {
             driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
