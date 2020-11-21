@@ -56,6 +56,7 @@ public class AppTest {
         }
         wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Checkout »"))).click();
 
+        // Удаляем из корзины
         for (WebElement button : wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("button[name=remove_cart_item]")))) {
             int entriesAmount = driver.findElements(By.cssSelector("table.dataTable.rounded-corners tr")).size();
             WebElement removeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[name='remove_cart_item']")));
