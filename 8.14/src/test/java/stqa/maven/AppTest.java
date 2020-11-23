@@ -42,17 +42,18 @@ public class AppTest {
 
         wait.until(presenceOfElementLocated(By.cssSelector("table.dataTable a[href]"))).click();
 
-        WebElement extLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("i.fa.fa-external-link")));
+        for (int i = 0; i < wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("i.fa.fa-external-link"))).size(); i++) {
+            WebElement extLink = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("i.fa.fa-external-link"))).get(i);
+            String mainWindow = driver.getWindowHandle();
+            Set<String> oldWindows = driver.getWindowHandles();
 
-        String mainWindow = driver.getWindowHandle();
-        Set<String> oldWindows = driver.getWindowHandles();
+            extLink.click();
 
-        extLink.click();
-
-        String newWindow = wait.until(thereIsWindowOtherThan(oldWindows));
-        driver.switchTo().window(newWindow);
-        driver.close();
-        driver.switchTo().window(mainWindow);
+            String newWindow = wait.until(thereIsWindowOtherThan(oldWindows));
+            driver.switchTo().window(newWindow);
+            driver.close();
+            driver.switchTo().window(mainWindow);
+        }
     }
 
     private ExpectedCondition<String> thereIsWindowOtherThan(Set<String> oldWindows) {
