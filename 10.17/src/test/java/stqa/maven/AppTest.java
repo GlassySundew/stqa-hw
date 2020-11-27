@@ -15,6 +15,7 @@ import javax.management.timer.Timer;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -40,11 +41,10 @@ public class AppTest {
 
         driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1");
 
-        for (int i = 0; i < wait.until(presenceOfAllElementsLocatedBy(By.cssSelector("td a[href*=product_id"))).size() / 2; i++) {
-            wait.until(presenceOfAllElementsLocatedBy(By.cssSelector("td a[href*=product_id"))).get(i * 2).click();
+        for (int i = 0; i < wait.until(presenceOfAllElementsLocatedBy(By.cssSelector("td a[href*='category_id=1&product_id=']"))).size() / 2; i++) {
+            wait.until(presenceOfAllElementsLocatedBy(By.cssSelector("td a[href*='category_id=1&product_id=']"))).get(i * 2).click();
             Assert.assertEquals(driver.manage().logs().get("browser").getAll(), new ArrayList<LogEntry>());
             driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1");
-
         }
     }
 
