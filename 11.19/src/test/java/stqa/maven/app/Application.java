@@ -49,6 +49,7 @@ public class Application {
 
     public void locateToCart() throws InterruptedException {
         mainPage.cartLink.click();
+        // Chrome bug crutch
         TimeUnit.MILLISECONDS.sleep(500);
     }
 
