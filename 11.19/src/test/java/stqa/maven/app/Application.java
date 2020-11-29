@@ -49,7 +49,7 @@ public class Application {
 
     public void locateToCart() throws InterruptedException {
         mainPage.cartLink.click();
-        // Chrome bug crutch
+        // Chrome bug crutchy fix
         TimeUnit.MILLISECONDS.sleep(500);
     }
 
