@@ -21,15 +21,13 @@ public class CartRemovePage extends Page {
     }
 
     // Ищем кнопку "Add To Cart" и кликаем
-    public CartRemovePage removeProduct() {
-        wait.until(visibilityOfElementLocated(By.cssSelector("button[name='remove_cart_item']"))).click();
-        return this;
-    }
-
-    public void waitForItemsToUpdate() {
+    public void removeProductAndWaitForItemsTableToUpdate() {
         int entriesAmount = driver.findElements(By.cssSelector("table.dataTable.rounded-corners tr")).size();
+        wait.until(visibilityOfElementLocated(By.cssSelector("button[name='remove_cart_item']"))).click();
         wait.until(numberOfElementsToBeLessThan(By.cssSelector("table.dataTable.rounded-corners tr"), entriesAmount));
     }
+
+
 
     @FindBy(css = "button[name=remove_cart_item]")
     public List<WebElement> removeButtons;

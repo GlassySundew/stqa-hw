@@ -41,7 +41,7 @@ public class Application {
 
     // Удаляем первый товар из корзины
     public void removeProductFromCart() {
-        cartRemovePage.removeProduct().waitForItemsToUpdate();
+        cartRemovePage.removeProductAndWaitForItemsTableToUpdate();
     }
 
     // Удаляем все товары из корзины
